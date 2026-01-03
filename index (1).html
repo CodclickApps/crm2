@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM Mobile - CodClick</title>
+    <link rel="stylesheet" href="style_mobile.css" />
+</head>
+<body>
+    <header class="mobile-header">
+        <img src="https://codclick.com.br/caixa/images/logo_codclick2.png" alt="CodClick Logo" class="header-logo">
+        <h1>CRM de Prospecções CodClick</h1>
+    </header>
+    <div class="filters-mobile">
+        <input type="text" id="searchInputMobile" onkeyup="filtrarLeadsMobile()" placeholder="Buscar empresa, CNPJ, etc.">
+        <button id="toggleFiltersBtn" onclick="toggleFiltersPanel()">Filtros</button>
+    </div>
+<select id="statusFilterMobile" onchange="filtrarLeadsMobile()">
+    <option value="">Todos os Status</option>
+</select>
+<input type="text" id="localFilterMobile" oninput="filtrarLeadsMobile()" placeholder="Filtrar por Local/Endereço">
+<div class="filter-group">
+    
+    <div id="filtersPanel" class="filters-panel">
+        <select id="statusFilterMobile" onchange="filtrarLeadsMobile()">
+            <option value="">Todos os Status</option>
+        </select>
+        <select id="segmentoFilterMobile" onchange="filtrarLeadsMobile()">
+            <option value="">Todos os Segmentos</option>
+        </select>
+        <div class="filter-group">
+            <label for="dateFieldFilter">Filtrar por data de:</label>
+            <select id="dateFieldFilter">
+                <option value="next_contact_date">Próximo Contato</option>
+                <option value="last_contact_date">Último Contato</option>
+               <option value="primeiro_contato">Prospecções</option>  
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="monthFilter">Filtrar por Mês:</label>
+            <select id="monthFilter"></select>
+        </div>
+        <div class="filter-group date-range-group">
+            <label id="dateRangeLabel">Próximo Contato - Período:</label>
+            <div class="date-inputs-container">
+                <input type="date" id="startDateFilter" placeholder="Início" />
+                <input type="date" id="endDateFilter" placeholder="Fim" />
+            </div>
+        </div>
+        <button class="clear-button" onclick="limparFiltrosDeData()">Limpar Filtros de Data</button>
+        <button onclick="closeFiltersPanel()">Aplicar e Fechar</button>
+    </div>
+    <br>
+    <div class="counter-container">
+        <div id="leadsCounter" class="leads-counter"></div>
+    </div>
+    <p class="center"><button class="relatorio-button"><a href="https://codclick.com.br/caixa/crm/relatorio.html">Relatórios</a></button></p>
+    <div id="leadsContainer" class="leads-container"></div>
+
+    <div id="leadsContainer" class="leads-container">
+    </div>
+
+    <button class="fab" onclick="abrirModalNovoLeadMobile()">+</button>
+
+    <div id="leadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="fecharModalMobile()">&times;</span>
+            <h2 id="modalTitle">Detalhes do Lead</h2>
+            
+            <div id="modalBody" class="modal-body">
+            </div>
+            <div class="observacoes-container">
+                <h3>Observações</h3>
+                <button class="nova-obs-button" onclick="adicionarNovaObservacaoForm()">+ Nova Obs</button>
+                
+                <div id="novaObsForm" class="form-observacao" style="display: none;">
+                    <label>Data:</label>
+                    <input type="date" id="obsDateInput" />
+                    <label>Hora:</label>
+                    <input type="time" id="obsTimeInput" />
+                    <label>Observação:</label>
+                    <textarea id="obsTextInput" placeholder="Digite sua observação aqui..."></textarea>
+                    <div class="button-container">
+                        <button class="salvar-obs-button" onclick="salvarObservacao()">Salvar Obs</button>
+                        <button class="cancelar-obs-button" onclick="cancelarObservacao()">Cancelar</button>
+                    </div>
+                </div>
+
+                <div id="historicoObservacoes">
+                    <div class="observacao-item">
+                        <p>Observação de exemplo: Cliente pediu para retornar na próxima semana.</p>
+                        <p class="obs-meta">Adicionado em: 05/09/2025 às 15:00</p>
+                        <div class="observacao-botoes">
+                            <button class="editar-obs-button">Editar</button>
+                            <button class="deletar-obs-button">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="substatusCheckboxes">
+            </div>
+
+
+
+            <div id="modalButtons" class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script_mobile.js"></script>
+</body>
+</html>

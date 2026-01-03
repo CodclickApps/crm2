@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Prospecções</title>
+  <link rel="stylesheet" href="style_mobile.css">
+</head>
+<body class="relatorio-page">
+  <!-- Cabeçalho (mesmo estilo do index) -->
+  <header class="mobile-header">
+    <img src="https://codclick.com.br/caixa/images/logo_codclick2.png" alt="CodClick Logo" class="header-logo">
+    <h1>Relatório de Prospecções</h1> <button class="relatorio-button"><a href="https://crm-kappa-woad.vercel.app/index.html">Voltar para o CRM</a></button>
+  </header>
+  <br><br>
+  <!-- Container principal (mesmo padrão do index) -->
+  <div class="container">
+    <!-- Painel de filtros: usamos filters-panel (mesmo estilo do index). 
+         Adicionamos a classe hide-on-relatorio no group que contém dateFieldFilter para escondê-lo sem quebrar o DOM -->
+    <div id="filtersPanel" class="filters-panel active">
+      <div class="filter-group hide-on-relatorio">
+        <label for="dateFieldFilter">Filtrar por data de:</label>
+        <select id="dateFieldFilter">
+          <option value="primeiro_contato">Primeiro Contato</option>
+          <option value="last_contact_date">Último Contato</option>
+          <option value="next_contact_date">Próximo Contato</option>
+          <option value="null">Nunca Prospectados</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="monthFilter">Mês:</label>
+        <select id="monthFilter">
+          <option value="">Todos os Meses</option>
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="startDateFilter">Início:</label>
+        <input type="date" id="startDateFilter">
+      </div>
+
+      <div class="filter-group">
+        <label for="endDateFilter">Fim:</label>
+        <input type="date" id="endDateFilter">
+      </div>
+
+      <div class="filter-group buttons">
+        <button class="primary" onclick="gerarRelatorio()">Gerar Relatório</button>
+        <button class="secondary" onclick="enviarRelatorio()">Enviar Relatório</button>
+      </div>
+    </div>
+
+    <!-- Resumo e resultados -->
+    <main>
+      <div id="relatorioResumo"></div>
+      <div id="relatorioContainer"></div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+  <script src="relatorio.js"></script>
+</body>
+</html>
